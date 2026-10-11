@@ -1,0 +1,44 @@
+@import './components/ui.css';
+
+:root {
+  font-family: Inter, "Noto Sans KR", "Apple SD Gothic Neo", sans-serif;
+  color: #34425a;
+  background: #f2f5fa;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --ink-strong: #26344b;
+  --ink-muted: #748198;
+  --accent: #6f8fda;
+  --accent-strong: #5d7bc5;
+  --line: #e8edf4;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  width: 100%;
+  min-width: 320px;
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  min-height: 100vh;
+}
+
+button,
+a {
+  -webkit-tap-highlight-color: transparent;
+}
+
+::selection {
+  color: #26344b;
+  background: #c8d8ff;
+}

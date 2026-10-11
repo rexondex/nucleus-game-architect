@@ -1,0 +1,27 @@
+.action-button {
+  width: 100%;
+  min-height: 2.8rem;
+  padding: 0.7rem 1rem;
+  border: 0;
+  border-radius: 0.8rem;
+  color: #fff;
+  background: var(--accent);
+  font: inherit;
+  font-size: 0.84rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background 150ms ease, transform 150ms ease;
+}
+
+.action-button:hover {
+  background: var(--accent-strong);
+}
+
+.action-button:active {
+  transform: translateY(1px);
+}
+
+.action-button:focus-visible {
+  outline: 3px solid #8ea9ff80;
+  outline-offset: 3px;
+}
