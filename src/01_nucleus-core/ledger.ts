@@ -5,7 +5,7 @@
  */
 export type ClothingSlot = 'hair' | 'top' | 'bottom' | 'shoes' | 'accessory'
 export type Rarity = 'common' | 'uncommon' | 'rare' | 'epic' | 'legendary'
-export type EventKind = 'game-started' | 'explored' | 'rested' | 'reward-applied' | 'item-equipped' | 'object-interacted' | 'character-renamed' | 'action-scheduled' | 'action-cancelled'
+export type EventKind = 'game-started' | 'time-advanced' | 'explored' | 'rested' | 'reward-applied' | 'item-equipped' | 'object-interacted' | 'character-renamed' | 'action-scheduled' | 'action-cancelled'
 
 export interface GameEvent {
   id: string
@@ -165,6 +165,7 @@ export function createGameNucleus(): GameNucleus {
         appendEvent('reward-applied', action.effectiveAt, `${action.title}: 별빛 코인 ${action.rewardCoins}개.`)
       }
     }
+    appendEvent('time-advanced', absolute, `게임 시간이 ${minutes}분 진행됐어요.`)
   }
 
   return {

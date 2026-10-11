@@ -96,3 +96,19 @@ src/
 - `CQRS-inspired`는 API의 명령 경로와 UI/3D의 읽기 투영을 나누는 측면을 설명한다.
 - 과거 이력에서 상태를 재구성하도록 확장하면 event-sourcing에 가까워진다. 현재 코어는 예약 및 이력의 초기 구현이며 완전한 재생 엔진은 아니다.
 - “세포핵”, “블랙홀/홀로그램”은 이 원칙을 설명하는 프로젝트 은유이며 정식 엔진 표준 용어라고 주장하지 않는다.
+
+## 코어 게임 체크
+
+- `src/02_api-controller/verification/game-check.test.ts`는 게임을 새로 생성하고 API 명령만으로 여러 플레이 흐름을 시뮬레이션한다. nucleus 내부 함수나 장부 저장소를 직접 만지지 않는다.
+- `npm run check:game`으로 단독 실행하고, `npm run check`와 `npm run build`에서도 자동 실행한다.
+- Node 내장 테스트 러너와 TypeScript 타입 제거 기능을 사용하므로 Node 22.6 이상이 필요하다.
+- 현재 자동 검사 범위는 시작 콘텐츠 참조, 스냅샷 분리, 장비, 탐험·기운·보상·수집, 휴식, 오브젝트 상호작용, 이름 변경, 과거 행동 이력, 미래 일정 예약·취소·정시 1회 적용이다.
+- 과거 임의 시점 복원, 영구 저장/재접속, 네트워크·권한, 외부 링크 실제 열기, 브라우저와 3D 렌더링은 아직 구현/검증 범위가 아니다.
+
+## 코어 라이브 뷰어
+
+- `src/02_api-controller/verification/game-viewer.ts`는 별도 게임 인스턴스를 만들고 공개 API만 사용해 세계 시간을 계속 진행한다. 매 tick마다 설정, 세계·플레이어 상태, 보유·장착·수집 목록, 전체 예약 상태와 최근 이력을 출력한다.
+- `npm run view:game`으로 시작한다. 기본 속도는 실제 1초마다 게임 1시간이다. `pause`, `resume`, `speed <밀리초>`로 시계를 제어하고, `explore`, `rest`, `equip`, `interact`, `rename`, `schedule`, `cancel`, `time` 명령으로 플레이를 조작한다.
+- `events`는 누적 이력 전체를, `dump`는 현재 장부 JSON 전체를 보여준다. `Ctrl+C` 또는 `quit`으로 뷰어를 종료한다.
+- `npm run view:game -- --ticks=2 --tick-ms=50`은 두 tick만 출력하는 종료형 smoke 실행이다. 기본 실행은 중지할 때까지 계속 돈다.
+- 라이브 뷰어와 자동 테스트 모두 Node 22.6 이상의 내장 TypeScript 타입 제거 기능을 사용한다.

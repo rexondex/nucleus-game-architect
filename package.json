@@ -11,7 +11,9 @@
     "check:lint": "eslint .",
     "check:architecture": "depcruise --config .dependency-cruiser.cjs -- src",
     "check:content": "node scripts/check-content.mjs",
-    "check": "npm run check:types && npm run check:lint && npm run check:architecture && npm run check:content"
+    "check:game": "node --disable-warning=ExperimentalWarning --experimental-strip-types --test src/02_api-controller/verification/game-check.test.ts",
+    "view:game": "node --disable-warning=ExperimentalWarning --experimental-strip-types src/02_api-controller/verification/game-viewer.ts",
+    "check": "npm run check:types && npm run check:lint && npm run check:architecture && npm run check:content && npm run check:game"
   },
   "dependencies": {
     "@react-three/fiber": "^9.5.0",
